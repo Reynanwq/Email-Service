@@ -12,7 +12,7 @@ This project is a backend implementation of an Email Service that provides an ab
 
 ## Technologies Used
 
-- Java Spring Boot
+- Java Spring Boot   
 - Amazon SES
 
 ## Getting Started

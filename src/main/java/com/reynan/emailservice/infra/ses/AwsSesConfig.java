@@ -1,15 +1,21 @@
 package com.reynan.emailservice.infra.ses;
 
+import com.amazonaws.auth.DefaultAWSCredentialsProviderChain;
 import com.amazonaws.services.simpleemail.AmazonSimpleEmailService;
 import com.amazonaws.services.simpleemail.AmazonSimpleEmailServiceClientBuilder;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Primary;
 
-@Configuration //executa antes da aplicação
+@Configuration
 public class AwsSesConfig {
-    //para que o spring faça a instacia correta da chave da amazon
+
     @Bean
-    public AmazonSimpleEmailService amazonSimpleEmailService(){
-        return AmazonSimpleEmailServiceClientBuilder.standard().build();
+    @Primary
+    public AmazonSimpleEmailService amazonSimpleEmailService() {
+        return AmazonSimpleEmailServiceClientBuilder.standard()
+                .withCredentials(DefaultAWSCredentialsProviderChain.getInstance())
+                .withRegion("") // Defina a região desejada aqui
+                .build();
     }
 }
